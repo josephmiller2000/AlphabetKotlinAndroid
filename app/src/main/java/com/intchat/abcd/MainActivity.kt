@@ -48,46 +48,27 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer = MediaPlayer()
 
        myButton_A.setOnClickListener {
-
-
-           var audioUrl = "https://cdn.pixabay.com/download/audio/2022/03/10/audio_054d2be21b.mp3"
-
-           mediaPlayer.setAudioAttributes(
-               AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_MUSIC).build()
-           )
-
-           try {
-
-if (mediaPlayer.isPlaying()){
-
-    println("lets see if the player is running")
-
-
-    mediaPlayer.stop()
-    mediaPlayer.release()
-
-}
-
-               mediaPlayer.setDataSource(audioUrl)
-
-               mediaPlayer.prepare()
-
-               mediaPlayer.start()
-
-
-
-           } catch (e: Exception){
-
-
-
-               e.printStackTrace()
-           }
-
-           Toast.makeText(applicationContext, "Audio Started Playing", Toast.LENGTH_LONG).show()
-
-
+  callPlayer()
        }
+    }
 
+    private fun callPlayer(){
+
+        var audioUrl = "https://cdn.pixabay.com/download/audio/2022/03/10/audio_054d2be21b.mp3"
+
+        try {
+            mediaPlayer.reset()
+
+            mediaPlayer.setDataSource(audioUrl)
+
+            mediaPlayer.prepare()
+
+            mediaPlayer.start()
+
+        } catch (e: Exception){
+            e.printStackTrace()
+        }
+        Toast.makeText(applicationContext, "Audio Started Playing", Toast.LENGTH_LONG).show()
 
     }
 }
